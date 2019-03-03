@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title>Title</title>
+
+
+    <link href="css/normalize.css" rel="stylesheet"/>
+    <link href="css/jquery-ui.css" rel="stylesheet"/>
+    <link href="css/jquery.idealforms.min.css" rel="stylesheet" media="screen"/>
+    <link href="css/register.css" rel="stylesheet"/>
+    <style>
+        body {
+            font: normal 15px/1.5 Arial, Helvetica, Free Sans, sans-serif;
+            color: #222;
+            background: url(img/backgrounds/1.jpg);
+            overflow-y: scroll;
+            padding: 60px 0 0 0;
+        }
+    </style>
+
+</head>
+<body>
+<div class="row">
+
+    <div class="eightcol last">
+
+        <!-- Begin Form -->
+
+        <form id="registerForm" method="post">
+
+            <section name="第一步">
+
+                <div><label>用户名:</label><input id="username" name="username" type="text"/></div>
+                <div><label>密码:</label><input id="password" name="password" type="password"/></div>
+                <!--<div><label>上传头像:</label><input id="file" name="file"  type="file"/></div>-->
+            </section>
+
+            <section name="第二步">
+                <div><label>电话:</label><input id="phone" name="phone" type="text"/></div>
+                <div><label>邮箱:</label><input id="email" name="email" type="text"/></div>
+            </section>
+            <div>
+                <hr/>
+            </div>
+
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+            <div>
+                <button type="button" id="user_register_btn">确定</button>
+
+                <button type="button" onclick="location.href='login'">返回</button>
+            </div>
+
+        </form>
+
+        <!-- End Form -->
+
+    </div>
+
+    <script type="text/javascript" th:src="@{/js/jquery-1.8.2.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-ui.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.idealforms.js}"></script>
+    <script type="text/javascript" th:src="@{/js/register.js}"></script>
+    <!--<script type="text/javascript">-->
+
+    <!--var options = {-->
+
+    <!--onFail: function () {-->
+    <!--alert($myform.getInvalid().length + ' invalid fields.')-->
+    <!--},-->
+
+    <!--inputs: {-->
+    <!--'password': {-->
+    <!--filters: 'required pass',-->
+    <!--},-->
+    <!--'username': {-->
+    <!--filters: 'required username',-->
+    <!--},-->
+    <!--'email': {-->
+    <!--filters: 'required email',-->
+    <!--},-->
+    <!--'phone': {-->
+    <!--filters: 'required phone',-->
+    <!--},-->
+    <!--}-->
+
+    <!--};-->
+
+
+    <!--$("#user_register_btn").click(function () {-->
+
+    <!--var username = $("#username").val();-->
+    <!--var password = $("#password").val();-->
+    <!--var header = $("meta[name='_csrf_header']").attr("content");-->
+    <!--var token = $("meta[name='_csrf']").attr("content");-->
+
+    <!--//判断用户名密码是否为空-->
+    <!--if (username.size = 0 || username == "" || username.replace(/(^s*)|(s*$)/g, "").length == 0) {-->
+    <!--alert("用户名为空");-->
+    <!--return false;-->
+
+    <!--if (password.size = 0 || password == "" || password.replace(/(^s*)|(s*$)/g, "").length == 0) {-->
+    <!--alert("密码为空");-->
+    <!--return false;-->
+    <!--}-->
+    <!--}-->
+
+    <!--$.ajax({-->
+    <!--url: "/register",-->
+    <!--type: "post",-->
+    <!--data: {"username": username, "password": password},-->
+    <!--async: false,-->
+    <!--beforeSend: function (xhr) {-->
+    <!--xhr.setRequestHeader(header, token);-->
+    <!--},-->
+    <!--success: function (result) {-->
+    <!--if (result.extend.sameName == "1") {-->
+    <!--alert("用户名重复！");-->
+    <!--//                        window.location.href = "register";-->
+    <!--} else {-->
+    <!--alert("注册成功！")-->
+    <!--}-->
+    <!--},-->
+    <!--error: function (result) {-->
+    <!--alert("注册失败！");-->
+    <!--}-->
+    <!--})-->
+    <!--});-->
+
+    <!--var $registerForm = $('#registerForm').idealforms(options).data('idealforms');-->
+
+    <!--$('#reset').click(function () {-->
+    <!--$registerForm.reset().fresh().focusFirst()-->
+    <!--});-->
+
+    <!--$registerForm.focusFirst();-->
+
+    <!--</script>-->
+
+
+</div>
+</body>
+</html>

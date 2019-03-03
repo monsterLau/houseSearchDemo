@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<link rel="stylesheet" href="/css/index.css"/>
+<link rel="stylesheet" href="/css/topbar.css"/>
+<link rel="stylesheet" href="/css/searchHouse.css"/>
+<link rel="stylesheet" href="/css/button.css"/>
+
+
+<!--引入Topbar-->
+<div th:replace="commons/topbar::topbar"></div>
+
+<!--<div class="container">-->
+
+<div class="row">
+    <div class="col-md-2 col-md-offset-1">
+        <div class="thumbnail">
+            <div class="caption">
+                <h1 class="ziti"> 条件查询</h1>
+                <div class="body  btn-group">
+
+                    <div class="form-group">
+                        <h2>地铁：</h2>
+                        <select id="subway" class="form-control col-5">
+                            <option>1号线</option>
+                            <option>2号线</option>
+                            <option>3号线</option>
+                            <option>4号线</option>
+                            <option>5号线</option>
+                            <option>6号线</option>
+                            <option>8号线</option>
+                            <option>9号线</option>
+                            <option>13号线</option>
+                            <option>14号线</option>
+                            <option>21号线</option>
+                            <option>APM线</option>
+                            <option>广佛线</option>
+                        </select>
+
+                        <div class="form-inline">
+                            <h2>售价：</h2>
+                            <input id="lowPrice" type="text" class="form-control" placeholder="low"
+                                   style="width: 70px"/>
+                            <label class="form-label col-1"> - </label>
+                            <input id="topPrice" type="text" class="form-control" placeholder="high"
+                                   style="width: 70px"/>
+                        </div>
+                        <h2>房间数：</h2>
+                        <select id="room" class="form-control col-2">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                        <h2>卫生间：</h2>
+                        <select id="bathroom" class="form-control col-2">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </div>
+
+                    <div class="form-inline" style="margin-bottom: 15px">
+                        <h2>面积：</h2>
+                        <input id="lowArea" type="text" class="form-control" placeholder="low" style="width: 70px"/>
+                        <label class="form-label"> - </label>
+                        <input id="topArea" type="text" class="form-control" placeholder="high" style="width: 70px"/>
+                    </div>
+
+                </div><!--body部分-->
+
+                <!--<div>-->
+                <!--&lt;!&ndash;<a id="searchHouseConfirmButton" class="btn btn-primary">确定</a>&ndash;&gt;-->
+                <!--&lt;!&ndash;<button type="reset" class="btn btn-primary">取消</button>&ndash;&gt;-->
+                <!--</div>-->
+                <div class="form-inline">
+                    <span class="button-wrap">
+                        <a id="searchHouseConfirmButton" class="button button-pill button-raised button-primary" style="width: 150px">确定</a>
+                    </span>
+                    <span class="button-wrap" style="margin-top: 10px">
+                        <a  class="button button-pill " style="width: 150px">取消</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--</div>-->
+<main style="margin-top: -50px" role="main" class="col-md-9 col-md-offset-3 ml-sm-auto col-lg-8 pt-3 px-4" id="result">
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-sm">
+            <thead>
+            <tr>
+                <th style="text-align: center;">#</th>
+                <th style="text-align: center;">照片</th>
+                <th style="text-align: center;">标题</th>
+                <th style="text-align: center;">售价</th>
+                <th style="text-align: center;">房间</th>
+                <th style="text-align: center;">地铁线</th>
+                <th style="text-align: center;">面积</th>
+                <th style="text-align: center;">操作</th>
+            </tr>
+            </thead>
+            <!--<tbody >-->
+            <!--<tr>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td>-->
+            <!--<a class="btn  btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"/>查看</a>-->
+            <!--<a class="btn btn-warning "> <span class="glyphicon glyphicon-star"-->
+            <!--aria-hidden="true"></span>预约</a>-->
+            <!--</td>-->
+            <!--</tr>-->
+
+            <!--</tbody>-->
+            <tbody>
+            <tr></tr>
+            </tbody>
+            <tbody id="conditionResult">
+
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--导入index.css文件-->
+
+<!--searchHouse  CSS-->
+<script type="text/javascript" th:src="@{/js/searchHouse.js}"></script>
+</body>
+</html>

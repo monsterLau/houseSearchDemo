@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
+
+    <!--<script src="../static/js/html5shiv.js"></script>-->
+    <script type="text/javascript" th:src="@{/js/jquery-1.8.2.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-ui.min.js}"></script>
+    <!--<link rel="stylesheet" href="css/style.css"/>-->
+
+    <link rel="stylesheet" type="text/css" href="css/zxf_page.css"/>
+    <!--导入index.css文件-->
+    <link rel="stylesheet" href="/css/index.css"/>
+    <link rel="stylesheet" href="/css/topbar.css"/>
+    <link rel="stylesheet" href="/css/button.css"/>
+
+    <style type="text/css">
+        /*#tittle{*/
+            /*font-size: small;*/
+            /*color: grey;*/
+            /*margin: 200px 0 0 300px;*/
+        /*}*/
+
+        #magnifier{
+            display: block;
+            width: 712px;
+            height:405px;
+            margin: 30px 0 0 300px;
+            position: relative;
+            border: grey solid 1px;
+        }
+
+        #small_box{
+            position: relative;
+            z-index: 1;
+        }
+
+        #float_box{    /* 小滑块*/
+            display: none;
+            width: 160px;
+            height:160px;
+            position: absolute;
+            background: red;
+            border:solid 1px grey;
+            filter:alpha(opacity = 0);
+            opacity: 0.5;
+        }
+        #mark{
+            position: absolute;
+            display: block;
+            width:715px;
+            height:405px;
+            background: black;
+            filter: alpha(opacity = 0);
+            opacity:0;
+            z-index:10;
+        }
+        #big_box{           /*  显示放大部位*/
+            display: none;
+            position: absolute;
+            top:0;
+            left:715px;
+            width:400px;
+            height:400px;
+            overflow: hidden;
+            border: 1px grey solid;
+            z-index:1;
+        }
+        #big_box img{
+            position: absolute;
+            z-index: 5;
+        }
+
+
+        ul{
+            list-style-type: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+<!--引入Topbar-->
+<div th:replace="commons/topbar::topbar"></div>
+
+
+<div style="margin-top: 150px">
+
+    <div id='content'>
+        <div id='tittle' style="margin-left: 300px">
+            <span style="font-size: large"><a style="font-size: large" th:href="@{/index.html}">找房网</a> </span> > <span></span> >  > <span th:text="${houseDetails.tittle}"></span> > <span>当前房源</span>
+        </div>
+
+        <div id="magnifier">
+            <!-- 左边的小图 -->
+            <div id="small_box">
+                <div id="mark"></div>
+                <!-- 放大镜 -->
+                <div id="float_box"></div>
+                <img th:src="${houseDetails.img}" style="width: 715px;height: 405px"/>
+            </div>
+            <div id="big_box">
+                <img src="big_pic.jpg"/>
+            </div>
+        </div>
+
+        <div id='message'>
+
+            <div style="float: left; margin: -430px 0 0 1050px;">
+                <ul>
+                    <li style='float: left;font-size: xx-large;'><span th:text="${houseDetails.price}" style="color: red"></span> <span style='font-size: large;'>元</span></li>
+                    <li style='margin-left: 100px;'>/月</li>
+                    <li style='margin-left: 100px;'>首付及贷款情况请咨询经纪人</li>
+                </ul>
+            </div>
+
+            <div style='width: 310px;height: 1px;background: black;float: left; margin: -280px 0 0 1090px;'></div>
+
+            <div style='margin-left: 1050px; margin-top: -360px;float: left;'>
+
+                <ul style='float: left'>
+                    <li>二室两厅</li>
+                    <li>低楼层/11层</li>
+                </ul>
+
+                <ul style='float: left'>
+                    <li>北</li>
+                    <li>平层/其他</li>
+                </ul>
+
+                <ul style='float: left'>
+                    <li>82.21平米</li>
+                    <li>2014年建/塔楼</li>
+                </ul>
+
+
+            </div>
+
+            <div style='width: 310px;height: 1px;background: black;float: left; margin: -280px 0 0 1090px;'></div>
+
+            <div>
+                <ul style='float: left;    margin: -250px 0 0 1050px;'>
+                    <li style='float: left; font-size: large'>名称</li>
+                    <li style='float: left;margin-left: 15px;'><span style="font-size: x-large" th:text="${houseDetails.tittle}"></span></li>
+                    <li style='float: left;margin-left: 15px;'>欢迎前来参观！</li>
+                </ul>
+
+                <ul style='float: left;margin: -210px 0 0 1050px;'>
+                    <li style='float: left;'>房间数：</li>
+                    <li style='float: left;margin-left: 15px;'><span style="font-size: large;color: #1B9AF7" th:text="${houseDetails.room}"></span></li>
+                    <li style='float: left;margin-left: 15px;'>卧室数：</li>
+                    <li style='float: left;margin-left: 15px;'><span style="font-size: large;color: #1B9AF7" th:text="${houseDetails.bathroom}"></span></li>
+                    <li style='float: left;margin-left: 15px;'>地铁沿线：</li>
+                    <li style='float: left;margin-left: 15px;'><span style="font-size: large;color: #1B9AF7" th:text="${houseDetails.subway}"></span></li>
+                </ul>
+                <ul style='float: left;    margin: -170px 0 0 1050px;'>
+                    <li style='float: left;'>看房时间</li>
+                    <li style='float: left;margin-left: 15px;'><span style="font-size: large;color: #1B9AF7">提前预约随时可看</span></li>
+                </ul>
+                <ul style='float: left;    margin: -130px 0 0 1050px;'>
+                    <li style='float: left;'>房屋编号</li>
+                    <li style='float: left;margin-left: 15px;'><span th:text="${houseDetails.houseId}"></span></li>
+                    <li style='float: left;margin-left: 15px;'><a href="http://www.cyberpolice.cn/wfjb/" style="font-size: large">首都网警举报中心</a></li>
+                </ul>
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/index.js}"></script>
+<script type="text/javascript" th:src="@{/js/topbar.js}"></script>
+<script type="text/javascript" th:src="@{/js/searchResult.js}"></script>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" th:src="@{js/zxf_page.js}"></script>
+
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>-->
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<!--<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+
+</body>
+</html>

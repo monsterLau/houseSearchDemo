@@ -1,0 +1,20 @@
+#topBarTittle {
+    font-style: normal;
+    letter-spacing: 5px;
+    font-weight: bolder;
+    font-size: 30px;
+    color: #1a8fc9;
+
+}
+
+
+#left {
+    position: relative;
+    left: 80px;
+}
+
+#right {
+    position: relative;
+    left: 150px;
+}
+

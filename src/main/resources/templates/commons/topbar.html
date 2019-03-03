@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+
+<!--topbar-->
+<nav class="navbar navbar-default navbar-static-top" th:fragment="topbar">
+    <div class="container">
+        <div id="left">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"-->
+                <!--data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--</button>-->
+                <a id="topBarTittle" class="navbar-brand" th:href="@{/index}">找房网</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav">
+                    <li><a th:href="@{/index}">首页</a></li>
+                    <li><a th:href="@{/searchHouse}">我要找房</a></li>
+                    <!--<li><a href="#">发布房源</a></li>-->
+                </ul>
+
+
+                <form class="navbar-form navbar-left">
+                    <div class="form-group ">
+                        <input id="keyWord" name="keyWord" type="text" class="form-control col-lg-6"
+                               style="width: 250px"
+                               placeholder="请输入内容..."/>
+                    </div>
+                    <!--<button id="searchButton" class="btn btn-info" th:href="@{/searchResult}">-->
+                    <a id="searchButton" class="button button-glow button-border button-rounded button-primary"
+                       style="margin-left: 8px">
+                        <span class="glyphicon glyphicon-search"></span>
+                        查找
+                    </a>
+                </form>
+
+                <!--右边的bar-->
+                <div id="right">
+                    <!--权限为USER的-->
+                    <div sec:authorize="hasRole('ROLE_USER')">
+                        <ul class="nav navbar-nav navbar-center">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <span sec:authentication="name" class="username"></span>
+                                    <span class="caret"></span></a>
+
+                                <!--登陆判断-->
+                                <ul class="dropdown-menu">
+                                    <!--<input type="hidden" >-->
+                                    <li><a th:href="@{/user/userDetails}">个人信息</a></li>
+                                    <li><a th:href="@{/user/userOrder}">我的预约</a></li>
+                                    <li role="separator" class="divider"></li>
+
+                                    <li><a th:href="@{/logout}">退出登录</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <!--权限为ADMIN的-->
+                    <div sec:authorize="hasRole('ROLE_ADMIN')">
+                        <ul class="nav navbar-nav navbar-center">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <span sec:authentication="name" class="username"></span>
+                                    <span class="caret"></span></a>
+
+                                <!--登陆判断-->
+                                <ul class="dropdown-menu">
+                                    <!--<input type="hidden" >-->
+                                    <li><a th:href="@{/admin/listHouse}">房屋信息</a></li>
+                                    <li><a th:href="@{/admin/listOrder}">预约信息</a></li>
+                                    <li role="separator" class="divider"></li>
+
+                                    <li><a th:href="@{/logout}">退出登录</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <!--未登录-->
+                    <div sec:authorize="isAnonymous()">
+                        <ul class="nav navbar-nav">
+                            <li><a th:href="@{/login}">登陆/注册</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+</body>
+</html>

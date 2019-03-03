@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:color="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <!--<script src="../static/js/html5shiv.js"></script>-->
+    <script type="text/javascript" th:src="@{/js/jquery-1.8.2.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-ui.min.js}"></script>
+    <!--<link rel="stylesheet" href="css/style.css"/>-->
+</head>
+
+<body>
+<!--引入Topbar-->
+<div th:replace="commons/topbar::topbar"></div>
+
+
+
+
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<!--<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>-->
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/searchResult.js}"></script>
+
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--导入index.css文件-->
+<link rel="stylesheet" href="css/index.css"/>
+<link rel="stylesheet" href="css/topbar.css"/>
+</body>
+</html>

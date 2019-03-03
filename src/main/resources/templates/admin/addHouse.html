@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:color="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <!--<script src="../static/js/html5shiv.js"></script>-->
+    <script type="text/javascript" th:src="@{/js/jquery-1.8.2.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-ui.min.js}"></script>
+    <!--<link rel="stylesheet" href="css/style.css"/>-->
+</head>
+
+<body>
+<!--引入Topbar-->
+<div th:replace="commons/topbar::topbar"></div>
+
+
+<div class="row">
+    <div class="col-md-5 col-md-offset-3">
+        <div class="thumbnail">
+            <form class="caption" method="post" enctype="multipart/form-data" action="/admin/addHouse">
+                <h1>发布房源</h1>
+                <div>
+                    <h2>标题：</h2>
+                    <input id="tittle" name="tittle" type="text" class="form-control" style="width: 400px"/>
+                </div>
+
+                <div class="body  btn-group">
+
+                    <div class="form-group">
+                        <h2>地铁：</h2>
+                        <select id="subway" name="subway" class="form-control col-5">
+                            <option>1号线</option>
+                            <option>2号线</option>
+                            <option>3号线</option>
+                            <option>4号线</option>
+                            <option>5号线</option>
+                            <option>6号线</option>
+                            <option>8号线</option>
+                            <option>9号线</option>
+                            <option>13号线</option>
+                            <option>14号线</option>
+                            <option>21号线</option>
+                            <option>APM线</option>
+                            <option>广佛线</option>
+                        </select>
+
+                        <h2>房屋图片</h2>
+                        <input type="file" id="img" name="img"/><br/>
+
+
+                        <div class="form-inline">
+                            <h2>售价：</h2>
+                            <input type="text" id="price" name="price" class="form-control col-2" placeholder="请输入房源价格"
+                                   style="width: 150px"/>
+                        </div>
+
+                        <h2>卫生间：</h2>
+                        <select id="bathroom" name="bathroom" class="form-control col-2">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </div>
+
+                    <div class="form-inline" style="margin-bottom: 15px">
+                        <h2>面积：</h2>
+                        <input id="area" name="area" type="text" class="form-control" placeholder="请输入房源面积" style="width: 150px"/>
+                    </div>
+
+                </div><!--body部分-->
+
+                <div style="margin: 10px">
+                    <button type="submit" class="button button-primary button-pill button-large" style="width: 150px;margin: 10px" id="addHouseButton">
+                        确定
+                    </button>
+                    <button type="reset" class="button button-pill button-large" style="width: 150px">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<!--<script type="text/javascript" th:src="@{/js/listHouse.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/js/searchResult.js}"></script>-->
+<script type="text/javascript" th:src="@{/js/addHouse.js}"></script>
+
+
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--导入index.css文件-->
+<link rel="stylesheet" href="/css/index.css"/>
+<link rel="stylesheet" href="/css/topbar.css"/>
+<link rel="stylesheet" href="/css/button.css"/>
+</body>
+</html>

@@ -94,11 +94,14 @@ function pn(pn) {
 $(document).on("click", ".orderBtn", function () {
     var username = $('.username')[0].innerHTML;
     var houseId = $(this).attr("id");
+    // console.log(username+"------"+houseId)
+
     $.ajax({
         url: "/user/userOrder",
         data: {username: username, houseId: houseId},
         type: "POST",
         success: function (result) {
+            console.log(username+"------"+houseId)
             alert("收藏成功！");
         },
         error: function () {

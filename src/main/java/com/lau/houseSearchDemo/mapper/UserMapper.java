@@ -112,4 +112,12 @@ public interface UserMapper {
 
     @Delete("delete from `order` where username=#{username} and houseId=#{houseId}")
     void deleteHouseOrderByUsernameAndHouseId(@Param("username") String username,@Param("houseId") Integer houseId);
+
+    /**
+     * 用户是否重复预约房屋
+     * @param username
+     * @param houseId
+     * @return
+     */
+    int isSameOrder(@Param("username") String username,@Param("houseId") Integer houseId);
 }

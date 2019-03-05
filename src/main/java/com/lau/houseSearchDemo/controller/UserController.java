@@ -191,11 +191,6 @@ public class UserController {
     }
 
 
-//    @GetMapping("/user/userOrder")
-//    public String toUserOrderPage() {
-//        return "/user/userOrder";
-//    }
-
     /**
      * 添加房屋预约信息
      *
@@ -204,7 +199,9 @@ public class UserController {
      * @return
      */
     @PostMapping("/user/userOrder")
-    public Msg addHouseOrder(String username, Integer houseId) {
+    public Msg addHouseOrder(@RequestParam("username") String username, @RequestParam("houseId")Integer houseId) {
+//        if(userService.isSameOrder(username,houseId))
+        System.out.println(username+"-------"+houseId);
         userService.addHouseOrder(username, houseId);
         return Msg.success();
     }

@@ -105,7 +105,7 @@ $(document).on("click", ".orderBtn", function () {
             alert("收藏成功！");
         },
         error: function () {
-            alert("shibai")
+            alert("您的权限错误")
         }
     })
 });

@@ -11,6 +11,11 @@ public class House {
     private int bathroom;
     private String subway;
     private String tittle;
+    private String housePhone;
+    private String name;
+
+
+    private int isOrder;
 
     private List<User> users;
 
@@ -81,20 +86,28 @@ public class House {
         this.tittle = tittle;
     }
 
-    public Integer getuserId() {
-        return userId;
+    public String getHousePhone() {
+        return housePhone;
     }
 
-    public void setuserId(Integer userId) {
-        this.userId = userId;
+    public void setHousePhone(String housePhone) {
+        this.housePhone = housePhone;
     }
 
-    public String getImg() {
-        return img;
+    public String getName() {
+        return name;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getIsOrder() {
+        return isOrder;
+    }
+
+    public void setIsOrder(int isOrder) {
+        this.isOrder = isOrder;
     }
 
     public List<User> getUsers() {
@@ -105,7 +118,26 @@ public class House {
         this.users = users;
     }
 
-    public House(Integer houseId, int price, int room, int area, int kitchen, int bathroom, String subway, String tittle, List<User> users, String img, Integer userId) {
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public House() {
+    }
+
+    public House(Integer houseId, int price, int room, int area, int kitchen, int bathroom, String subway, String tittle, String housePhone, String name, int isOrder, List<User> users, String img, Integer userId) {
         this.houseId = houseId;
         this.price = price;
         this.room = room;
@@ -114,12 +146,12 @@ public class House {
         this.bathroom = bathroom;
         this.subway = subway;
         this.tittle = tittle;
+        this.housePhone = housePhone;
+        this.name = name;
+        this.isOrder = isOrder;
         this.users = users;
         this.img = img;
         this.userId = userId;
-    }
-
-    public House() {
     }
 
     @Override
@@ -133,6 +165,9 @@ public class House {
                 ", bathroom=" + bathroom +
                 ", subway='" + subway + '\'' +
                 ", tittle='" + tittle + '\'' +
+                ", housePhone='" + housePhone + '\'' +
+                ", name='" + name + '\'' +
+                ", isOrder=" + isOrder +
                 ", users=" + users +
                 ", img='" + img + '\'' +
                 ", userId=" + userId +

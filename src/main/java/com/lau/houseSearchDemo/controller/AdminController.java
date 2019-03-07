@@ -44,15 +44,6 @@ public class AdminController {
         return "redirect:/admin/listHouse";
     }
 
-    //    根据HouseId查询房屋信息（回显）
-//    根据houseId查找house信息
-//    @GetMapping("/admin/findHouseByHouseId")
-//    @ResponseBody
-//    public Msg findHouseByHouseId(@RequestParam("houseId") Integer houseId) {
-//        House house = userService.findHouseByhouseId(houseId);
-//        return Msg.success().add("houseDetails", house);
-//    }
-
 
     //    根据houseId查找house信息
 //    1.根据HouseId查询房屋信息（回显）
@@ -60,6 +51,7 @@ public class AdminController {
     public String updateHouse(@PathVariable("houseId") Integer houseId, Model model) {
 
         House house = userService.findHouseByhouseId(houseId);
+        System.out.println(house);
         model.addAttribute("houseDetails", house);
         return "/admin/updateHouse";
     }
@@ -121,6 +113,8 @@ public class AdminController {
                            @RequestParam("price") Integer price,
                            @RequestParam("bathroom") Integer bathroom,
                            @RequestParam("area") Integer area,
+                           @RequestParam("housePhone") String housePhone,
+                           @RequestParam("name") String name,
                            HttpServletRequest httpServletRequest) {
         House house = new House();
         house.setTittle(tittle);
@@ -128,6 +122,9 @@ public class AdminController {
         house.setPrice(price);
         house.setBathroom(bathroom);
         house.setArea(area);
+        house.setIsOrder(0);
+        house.setHousePhone(housePhone);
+        house.setName(name);
 
         if (null != img && img.getSize() > 0) {
 //            上传时的文件名
@@ -171,15 +168,16 @@ public class AdminController {
     /**
      * 处理用户预约信息
      *
-     * @param realName
+     * @param username
      * @param houseId
      * @return
      */
     @ResponseBody
     @PostMapping("/admin/delUserOrder")
     public Msg deleteHouseOrderByUsernameAndHouseId(@RequestParam("username") String username,
-                                                       @RequestParam("houseId") Integer houseId) {
+                                                    @RequestParam("houseId") Integer houseId) {
         userService.deleteHouseOrderByUsernameAndHouseId(username, houseId);
+        userService.updateIsOrder(0, houseId);
         return Msg.success();
     }
 }

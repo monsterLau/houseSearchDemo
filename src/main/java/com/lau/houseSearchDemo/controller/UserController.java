@@ -199,10 +199,10 @@ public class UserController {
      * @return
      */
     @PostMapping("/user/userOrder")
-    public Msg addHouseOrder(@RequestParam("username") String username, @RequestParam("houseId")Integer houseId) {
-//        if(userService.isSameOrder(username,houseId))
-        System.out.println(username+"-------"+houseId);
+    public Msg addHouseOrder(@RequestParam("username") String username, @RequestParam("houseId") Integer houseId) {
+        System.out.println(username + "-------" + houseId);
         userService.addHouseOrder(username, houseId);
+        userService.updateIsOrder(1, houseId);
         return Msg.success();
     }
 
@@ -218,6 +218,7 @@ public class UserController {
     public Msg deleteHouseOrderByUsernameAndHouseId(@RequestParam("username") String username, @RequestParam("houseId") Integer houseId) {
         System.out.printf(username + "-----" + houseId);
         userService.deleteHouseOrderByUsernameAndHouseId(username, houseId);
+        userService.updateIsOrder(0, houseId);
         return Msg.success();
     }
 

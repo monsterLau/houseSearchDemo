@@ -53,16 +53,3 @@ function delHouse(id) {
 }
 
 
-// function updateHouse(houseId) {
-//     var houseId = houseId;
-//
-//     $.ajax({
-//         url: "/admin/findHouseByHouseId?houseId="+houseId,
-//         type: "GET",
-//         // async: false,
-//         success: function (result) {
-//             console.log(result);
-//         }
-//     })
-// }
-

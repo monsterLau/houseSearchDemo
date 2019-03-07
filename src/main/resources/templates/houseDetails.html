@@ -12,7 +12,7 @@
     <script type="text/javascript" th:src="@{/js/jquery-ui.min.js}"></script>
     <!--<link rel="stylesheet" href="css/style.css"/>-->
 
-    <link rel="stylesheet" type="text/css" href="css/zxf_page.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/zxf_page.css"/>
     <!--导入index.css文件-->
     <link rel="stylesheet" href="/css/index.css"/>
     <link rel="stylesheet" href="/css/topbar.css"/>
@@ -157,26 +157,28 @@
                     <li style='float: left;margin-left: 15px;'><span style="font-size: large;color: #1B9AF7" th:text="${houseDetails.bathroom}"></span></li>
                     <li style='float: left;margin-left: 15px;'>地铁沿线：</li>
                     <li style='float: left;margin-left: 15px;'><span style="font-size: large;color: #1B9AF7" th:text="${houseDetails.subway}"></span></li>
+
+                    <li style='float: left;margin-left: 15px;'>联系人：</li>
+                    <li style='float: left;margin-left: 15px;'><span style="font-size: large;color: #1B9AF7" th:text="${houseDetails.name}"></span></li>
+                    <li style='float: left;margin-left: 15px;'>联系电话：</li>
+                    <li style='float: left;margin-left: 15px;'><span style="font-size: large;color: #1B9AF7" th:text="${houseDetails.housePhone}"></span></li>
+
                 </ul>
                 <ul style='float: left;    margin: -170px 0 0 1050px;'>
                     <li style='float: left;'>看房时间</li>
                     <li style='float: left;margin-left: 15px;'><span style="font-size: large;color: #1B9AF7">提前预约随时可看</span></li>
                 </ul>
+
                 <ul style='float: left;    margin: -130px 0 0 1050px;'>
                     <li style='float: left;'>房屋编号</li>
                     <li style='float: left;margin-left: 15px;'><span th:text="${houseDetails.houseId}"></span></li>
                     <li style='float: left;margin-left: 15px;'><a href="http://www.cyberpolice.cn/wfjb/" style="font-size: large">首都网警举报中心</a></li>
                 </ul>
-
             </div>
-
 
         </div>
 
-
-
     </div>
-
 
 </div>
 

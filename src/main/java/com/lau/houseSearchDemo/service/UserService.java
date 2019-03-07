@@ -73,7 +73,11 @@ public interface UserService {
 
     /**
      * 后台用户查看用户预约信息
+     *
      * @return
      */
     List<House> adminFindUserOrder();
+
+    //    修改房屋状态————》是否被预约  0：未被预约  1：已被预约
+    void updateIsOrder(Integer i,Integer houseId);
 }

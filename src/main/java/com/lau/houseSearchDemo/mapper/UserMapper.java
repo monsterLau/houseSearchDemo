@@ -43,15 +43,15 @@ public interface UserMapper {
     void updateUser(User user);
 
     //    查询所有房屋信息
-    @Select("select * from house Order by houseId")
+    @Select("select * from house where isOrder=0 Order by houseId")
     List<House> allHouse();
 
-//    价格从高到低排列房屋信息
+    //    价格从高到低排列房屋信息
     @Select("SELECT * FROM HOUSE ORDER BY price")
     List<House> allHouseByPriceFromHighToLow();
 
 
-//    价格从高到低排列房屋信息
+    //    价格从高到低排列房屋信息
     @Select("SELECT * FROM HOUSE ORDER BY price DESC")
     List<House> allHouseByPriceFromLowToHigh();
 
@@ -64,14 +64,18 @@ public interface UserMapper {
     @Select("select * from Order where username = #{username}")
     List<House> findUserOrdeByusernamer();
 
+    //    修改房屋预约状态
+    @Update("UPDATE house set isOrder=#{isOrder} where houseId=#{houseId}")
+    void updateIsOrder(@Param("isOrder") Integer i,@Param("houseId") Integer houseId);
+
     //    关键字查询房屋信息
-    @Select("select * from house where tittle like " + "'%" + "${keyWord}" + "%'")
+    @Select("select * from house where tittle like " + "'%" + "${keyWord}" + "%' and isOrder=0")
 //    @Select("select * from house where tittle like '${keyWord}'")
     List<House> findHouseBykeyWord(@Param("keyWord") String keyWord);
 
     //    条件查询房屋信息
     @Select("select * from house where subway like '%${subway}%' and price between #{lowPrice} and #{topPrice} " +
-            "and room = #{room} and bathroom= #{bathroom} and area between #{lowArea} and #{topArea}")
+            "and room = #{room} and bathroom= #{bathroom} and area between #{lowArea} and #{topArea} and isOrder=0")
     List<House> findHouseByConditions(@Param("lowPrice") Integer lowPrice, @Param("topPrice") Integer topPrice,
                                       @Param("subway") String subway, @Param("bathroom") Integer bathroom,
                                       @Param("room") Integer room, @Param("lowArea") Integer lowArea,
@@ -90,8 +94,7 @@ public interface UserMapper {
      *
      * @param house
      */
-    @Insert("insert into house(price,room,bathroom,subway,area,tittle,img) values (#{price},#{room},#{bathroom},#{subway},#{area},#{tittle},#{img})")
-//    @Insert("insert into department(department_name) values (#{departmentName})")
+    @Insert("insert into house(price,room,bathroom,subway,area,tittle,img,isOrder,housePhone,name) values (#{price},#{room},#{bathroom},#{subway},#{area},#{tittle},#{img},0,#{housePhone},#{name})")
     void insertHouse(House house);
 
     /**
@@ -103,21 +106,24 @@ public interface UserMapper {
     @Select("select * from house where houseId=#{houseId}")
     House findHouseByhouseId(Integer houseId);
 
-    @Update("update house set img=#{img}, price=#{price},room=#{room},bathroom=#{bathroom},subway=#{subway},area=#{area},tittle=#{tittle} where houseId=#{houseId}")
+    @Update("update house set img=#{img}, price=#{price},room=#{room},bathroom=#{bathroom},subway=#{subway},area=#{area},tittle=#{tittle},housePhone=#{housePhone},name=#{name} where houseId=#{houseId}")
     void updateHouseByHouseId(House house);
 
-//    添加房屋收藏
+    //    添加房屋收藏
     @Insert("insert into `order`(username,houseId) values(#{username},#{houseId})")
-    void addHouseOrder(@Param("username") String username,@Param("houseId") Integer houseId);
+    void addHouseOrder(@Param("username") String username, @Param("houseId") Integer houseId);
 
     @Delete("delete from `order` where username=#{username} and houseId=#{houseId}")
-    void deleteHouseOrderByUsernameAndHouseId(@Param("username") String username,@Param("houseId") Integer houseId);
+    void deleteHouseOrderByUsernameAndHouseId(@Param("username") String username, @Param("houseId") Integer houseId);
 
     /**
      * 用户是否重复预约房屋
+     *
      * @param username
      * @param houseId
      * @return
      */
-    int isSameOrder(@Param("username") String username,@Param("houseId") Integer houseId);
+    int isSameOrder(@Param("username") String username, @Param("houseId") Integer houseId);
+
+
 }

@@ -91,6 +91,17 @@ public class HouseSearchDemoApplicationTests {
         }
         System.out.println(houseList.size());
     }
+
+    @Test
+    public void updateIsOrder(){
+        userService.updateIsOrder(1,17);
+    }
+
+    @Test
+    public void findHouseOrderByUsername(){
+        List<House> house=userService.findHouseOrderByUsername("liujunjie123");
+        System.out.println(house);
+    }
 }
 
 

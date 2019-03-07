@@ -109,6 +109,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void updateIsOrder(Integer i,Integer houseId) {
+        userMapper.updateIsOrder(i,houseId);
+    }
+
+    @Override
     public User findUserByuserName(String username) {
         User user = userMapper.findUserByUsername(username);
         return user;

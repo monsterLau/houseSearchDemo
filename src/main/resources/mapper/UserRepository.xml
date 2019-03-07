@@ -30,6 +30,9 @@
         <result property="area" column="area"/>
         <result property="tittle" column="tittle"/>
         <result property="img" column="img"/>
+        <result property="isOrder" column="isOrder"/>
+        <result property="housePhone" column="housePhone"/>
+        <result property="name" column="name"/>
         <collection property="users" ofType="com.lau.houseSearchDemo.domain.User">
             <id property="id" column="id"/>
             <result property="username" column="username"/>
@@ -58,6 +61,9 @@
         <result property="area" column="area"/>
         <result property="tittle" column="tittle"/>
         <result property="img" column="img"/>
+        <result property="isOrder" column="isOrder"/>
+        <result property="housePhone" column="housePhone"/>
+        <result property="name" column="name"/>
         <collection property="users" ofType="com.lau.houseSearchDemo.domain.User">
             <result property="id" column="id"/>
             <result property="username" column="username"/>

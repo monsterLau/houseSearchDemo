@@ -77,7 +77,7 @@ function pn(pn) {
                     "                    <td>\n" +
                     "                            <a href=\"/checkHouseDetailsById/" + t.houseId + " \" class=\"button  button-glow button-rounded button-raised button-primary\"><span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"/>查看</a>\n" +
                     "                            <a id=\"" + t.houseId + "\" class=\"button button-glow button-rounded button-caution orderBtn delOrderBtn\"> <span class=\" glyphicon glyphicon-star\"\n" +
-                    "                                                               aria-hidden=\"true\"></span>取消收藏</a></tr>"
+                    "                                                               aria-hidden=\"true\"></span>取消预约</a></tr>"
 
                 )
             })

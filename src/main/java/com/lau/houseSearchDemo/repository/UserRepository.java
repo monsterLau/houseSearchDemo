@@ -14,6 +14,6 @@ public interface UserRepository {
 
     List<House> findHouseOrderByUsername(@Param("username")String username);
 
-    List<House> adminFindUserOrder();
+    List<House> adminFindUserOrder(@Param("houseUsername")String houseUsername);
 
 }

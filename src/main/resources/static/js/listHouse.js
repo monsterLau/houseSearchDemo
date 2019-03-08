@@ -1,14 +1,16 @@
 var houseId = $("#button").val();
+var username = $(".username")[0].innerHTML;
 
 $.ajax({
-    url: "/allHouse",
+    url: "/allHouse/"+username,
     type: "GET",
-    data: {},
+    data: {houseUsername:username},
     async: false,
     // beforeSend: function (xhr) {
     //     xhr.setRequestHeader(header, token);
     // },
     success: function (result) {
+        console.log(username)
         console.log(result.extend.success.list);
         var list = result.extend.success.list;
         // t=list[number]

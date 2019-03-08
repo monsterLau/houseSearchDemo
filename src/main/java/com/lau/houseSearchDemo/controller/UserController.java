@@ -106,14 +106,6 @@ public class UserController {
     @ResponseBody
     @GetMapping("/allHouse")
     public Msg allHouse(@RequestParam(value = "pn", defaultValue = "1") Integer pn) {
-//        System.out.println(pn);
-//        PageHelper.startPage(2, 10);
-//        List<House> allHouse = userService.allHouse();
-//        PageInfo page = new PageInfo(allHouse, 10);
-//        for(House houses:allHouse){
-//            System.out.println(houses);
-//        }
-//        return Msg.success().add("success", page);
         PageHelper.startPage(pn, 10);
         List<House> allHouse = userService.allHouse();
         PageInfo page = new PageInfo(allHouse, 5);

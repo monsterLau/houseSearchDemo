@@ -32,6 +32,7 @@
         <result property="img" column="img"/>
         <result property="isOrder" column="isOrder"/>
         <result property="housePhone" column="housePhone"/>
+        <result property="houseUsername" column="houseUsername"/>
         <result property="name" column="name"/>
         <collection property="users" ofType="com.lau.houseSearchDemo.domain.User">
             <id property="id" column="id"/>
@@ -63,6 +64,7 @@
         <result property="img" column="img"/>
         <result property="isOrder" column="isOrder"/>
         <result property="housePhone" column="housePhone"/>
+        <result property="houseUsername" column="houseUsername"/>
         <result property="name" column="name"/>
         <collection property="users" ofType="com.lau.houseSearchDemo.domain.User">
             <result property="id" column="id"/>
@@ -82,6 +84,7 @@
         FROM `house` h
         JOIN `order` o ON h.houseId=o.houseId
         JOIN `user` u ON u.username=o.username
+        WHERE h.houseUsername=#{houseUsername}
     </select>
 </mapper>
 

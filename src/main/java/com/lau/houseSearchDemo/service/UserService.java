@@ -15,6 +15,9 @@ public interface UserService {
     //    用户注册
     public void registerUser(User user);
 
+    //    用户注册
+    public void registerAdmin(User user);
+
     //    查询用户名重复
     Long sameUsername(String username);
 
@@ -26,6 +29,9 @@ public interface UserService {
 
     //    查询所有房间信息
     List<House> allHouse();
+
+    //    查询所有房间信息
+    List<House> allHouseByHouseUsername(String houseUsername);
 
     //    根据房价排列房屋信息
     List<House> allHouseByPriceFromHighToLow();
@@ -76,7 +82,7 @@ public interface UserService {
      *
      * @return
      */
-    List<House> adminFindUserOrder();
+    List<House> adminFindUserOrder(String houseUsername);
 
     //    修改房屋状态————》是否被预约  0：未被预约  1：已被预约
     void updateIsOrder(Integer i,Integer houseId);

@@ -2,6 +2,8 @@ $(function () {
     pn(1);
 })
 
+var username = $(".username")[0].innerHTML;
+
 function pn(pn) {
     $.ajax({
         url: "/admin/adminFindUserOrder",
@@ -9,6 +11,7 @@ function pn(pn) {
         type: "GET",
         success: function (result) {
             console.log(result);
+            console.log("houseOrder")
             buildHousePage(result);
             count = result.extend.success.pages;
             var list = result.extend.success.list;

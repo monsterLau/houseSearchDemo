@@ -28,7 +28,7 @@ public interface UserMapper {
 
     //    添加用户权限->1
     @Insert("insert into user_role  values (#{user_id},#{role_id})")
-    public void addRole(@Param("user_id") Integer user_id, @Param("role_id") Integer role_id);
+    void addRole(@Param("user_id") Integer user_id, @Param("role_id") Integer role_id);
 
     //    查询重复用户名
     @Select("SELECT COUNT(username) from user where username=#{username}")
@@ -45,6 +45,10 @@ public interface UserMapper {
     //    查询所有房屋信息
     @Select("select * from house where isOrder=0 Order by houseId")
     List<House> allHouse();
+
+    //    查询所有房屋信息
+    @Select("select * from house where isOrder=0 and houseUsername=#{houseUsername} Order by houseId")
+    List<House> allHouseByHouseUsername(String houseUsername);
 
     //    价格从高到低排列房屋信息
     @Select("SELECT * FROM HOUSE ORDER BY price")
@@ -94,7 +98,7 @@ public interface UserMapper {
      *
      * @param house
      */
-    @Insert("insert into house(price,room,bathroom,subway,area,tittle,img,isOrder,housePhone,name) values (#{price},#{room},#{bathroom},#{subway},#{area},#{tittle},#{img},0,#{housePhone},#{name})")
+    @Insert("insert into house(price,room,bathroom,subway,area,tittle,img,isOrder,housePhone,name,houseUsername) values (#{price},#{room},#{bathroom},#{subway},#{area},#{tittle},#{img},0,#{housePhone},#{name},#{houseUsername})")
     void insertHouse(House house);
 
     /**

@@ -85,7 +85,8 @@ public class HouseSearchDemoApplicationTests {
 
     @Test
     public void adminFindUserOrder() {
-        List<House> houseList = userService.adminFindUserOrder();
+        String houseUsername="";
+        List<House> houseList = userService.adminFindUserOrder(houseUsername);
         for (House house : houseList) {
             System.out.println(house);
         }

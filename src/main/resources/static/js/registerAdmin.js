@@ -56,7 +56,7 @@ $("#user_register_btn").click(function () {
     }
 
     $.ajax({
-        url: "/register",
+        url: "/registerAdmin",
         type: "post",
         data: {"username": username, "password": password,"phone":phone,"email":email,"realName":realName},
         async: false,

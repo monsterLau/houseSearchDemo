@@ -32,6 +32,16 @@ public class UserServiceImpl implements UserService {
         userMapper.addRole(Integer.valueOf(id), Integer.valueOf("1"));
     }
 
+    @Override
+    public void registerAdmin(User user) {
+        //        添加用户
+        userMapper.registerUser(user);
+//        username查询用户ID
+        String id = userMapper.getUserIdByUsername(user.getUsername());
+//        添加权限->1
+        userMapper.addRole(Integer.valueOf(id), Integer.valueOf("2"));
+    }
+
     //    用户名是否重复
     @Override
     public Long sameUsername(String username) {
@@ -42,6 +52,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<House> allHouse() {
         return userMapper.allHouse();
+    }
+
+    @Override
+    public List<House> allHouseByHouseUsername(String houseUsername) {
+        return userMapper.allHouseByHouseUsername(houseUsername);
     }
 
     @Override
@@ -104,8 +119,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<House> adminFindUserOrder() {
-        return userRepository.adminFindUserOrder();
+    public List<House> adminFindUserOrder(String houseUsername) {
+        return userRepository.adminFindUserOrder(houseUsername);
     }
 
     @Override

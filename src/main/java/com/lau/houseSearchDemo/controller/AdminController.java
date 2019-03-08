@@ -4,10 +4,13 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lau.houseSearchDemo.domain.House;
 import com.lau.houseSearchDemo.domain.Msg;
+import com.lau.houseSearchDemo.domain.User;
 import com.lau.houseSearchDemo.service.UserService;
+import com.lau.houseSearchDemo.utils.MD5Util;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -25,10 +29,46 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    //去中介注册页面
+    @GetMapping("/registerAdmin")
+    public String toAdminRegisterPage() {
+        return "/registerAdmin";
+    }
+
+    //    中介注册
+    @ResponseBody
+    @PostMapping("/registerAdmin")
+    public Msg registerUser(User user) {
+
+//        查看是否有重复的用户名
+        Long countName = userService.sameUsername(user.getUsername());
+//        System.out.println(countName + "   " + user.getUsername());
+        if (countName > 0) {
+//            0->用户名不重复    1->用户名重复
+            return Msg.fail().add("sameName", "1");
+
+        }
+//        将密码进行MD5加密
+        user.setPassword(MD5Util.encode(user.getPassword()));
+        userService.registerAdmin(user);
+
+        return Msg.success().add("success", "0");
+    }
+
     //    去房屋信息列页面
     @GetMapping("/admin/listHouse")
     public String toListHousePage() {
         return "/admin/listHouse";
+    }
+
+    //    列出所有房屋信息byHouseUsername
+    @ResponseBody
+    @GetMapping("/allHouse/{houseUsername}")
+    public Msg allHouse(@RequestParam(value = "pn", defaultValue = "1") Integer pn, @RequestParam("houseUsername") String houseUsername) {
+        PageHelper.startPage(pn, 10);
+        List<House> allHouse = userService.allHouseByHouseUsername(houseUsername);
+        PageInfo page = new PageInfo(allHouse, 5);
+        return Msg.success().add("success", page);
     }
 
     //去预约信息列页面
@@ -115,7 +155,9 @@ public class AdminController {
                            @RequestParam("area") Integer area,
                            @RequestParam("housePhone") String housePhone,
                            @RequestParam("name") String name,
-                           HttpServletRequest httpServletRequest) {
+                           HttpServletRequest httpServletRequest,
+                           @AuthenticationPrincipal Principal principal) {
+        String houseUsername = principal.getName();
         House house = new House();
         house.setTittle(tittle);
         house.setSubway(subway);
@@ -125,6 +167,7 @@ public class AdminController {
         house.setIsOrder(0);
         house.setHousePhone(housePhone);
         house.setName(name);
+        house.setHouseUsername(houseUsername);
 
         if (null != img && img.getSize() > 0) {
 //            上传时的文件名
@@ -147,6 +190,7 @@ public class AdminController {
         }
 
         userService.insertHouse(house);
+        System.out.println(house);
         return "index";
     }
 
@@ -158,9 +202,11 @@ public class AdminController {
      */
     @ResponseBody
     @GetMapping("/admin/adminFindUserOrder")
-    public Msg adminFindUserOrder(@RequestParam(defaultValue = "1", value = "pn") Integer pn) {
+    public Msg adminFindUserOrder(@RequestParam(defaultValue = "1", value = "pn") Integer pn,
+                                  @AuthenticationPrincipal Principal principal) {
+        String houseUsername=principal.getName();
         PageHelper.startPage(pn, 10);
-        List<House> houseList = userService.adminFindUserOrder();
+        List<House> houseList = userService.adminFindUserOrder(houseUsername);
         PageInfo pages = new PageInfo(houseList, 5);
         return Msg.success().add("success", pages);
     }

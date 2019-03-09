@@ -86,4 +86,7 @@ public interface UserService {
 
     //    修改房屋状态————》是否被预约  0：未被预约  1：已被预约
     void updateIsOrder(Integer i,Integer houseId);
+
+
+    void isSell(Integer isSell,Integer houseId);
 }

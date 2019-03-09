@@ -100,7 +100,7 @@ public class HouseSearchDemoApplicationTests {
 
     @Test
     public void findHouseOrderByUsername(){
-        List<House> house=userService.findHouseOrderByUsername("liujunjie123");
+        List<House> house=userService.allHouseByHouseUsername("root123");
         System.out.println(house);
     }
 }

@@ -47,8 +47,8 @@ public interface UserMapper {
     List<House> allHouse();
 
     //    查询所有房屋信息
-    @Select("select * from house where isOrder=0 and houseUsername=#{houseUsername} Order by houseId")
-    List<House> allHouseByHouseUsername(String houseUsername);
+    @Select("select * from house where houseUsername=#{houseUsername} Order by houseId")
+    List<House> allHouseByHouseUsername(@Param("houseUsername") String houseUsername);
 
     //    价格从高到低排列房屋信息
     @Select("SELECT * FROM HOUSE ORDER BY price")
@@ -70,7 +70,7 @@ public interface UserMapper {
 
     //    修改房屋预约状态
     @Update("UPDATE house set isOrder=#{isOrder} where houseId=#{houseId}")
-    void updateIsOrder(@Param("isOrder") Integer i,@Param("houseId") Integer houseId);
+    void updateIsOrder(@Param("isOrder") Integer i, @Param("houseId") Integer houseId);
 
     //    关键字查询房屋信息
     @Select("select * from house where tittle like " + "'%" + "${keyWord}" + "%' and isOrder=0")
@@ -130,4 +130,6 @@ public interface UserMapper {
     int isSameOrder(@Param("username") String username, @Param("houseId") Integer houseId);
 
 
+    @Update("update house set isSell=#{isSell} where houseId=#{houseId}")
+    void isSell(@Param("isSell") Integer isSell, @Param("houseId") Integer houseId);
 }

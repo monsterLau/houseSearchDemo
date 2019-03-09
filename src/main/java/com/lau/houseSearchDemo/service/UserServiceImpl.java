@@ -129,6 +129,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void isSell(Integer isSell, Integer houseId) {
+        userMapper.isSell(isSell, houseId);
+    }
+
+    @Override
     public User findUserByuserName(String username) {
         User user = userMapper.findUserByUsername(username);
         return user;

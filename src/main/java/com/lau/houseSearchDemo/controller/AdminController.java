@@ -63,8 +63,11 @@ public class AdminController {
 
     //    列出所有房屋信息byHouseUsername
     @ResponseBody
-    @GetMapping("/allHouse/{houseUsername}")
-    public Msg allHouse(@RequestParam(value = "pn", defaultValue = "1") Integer pn, @RequestParam("houseUsername") String houseUsername) {
+    @GetMapping("/allHouseByHouseUsername")
+    public Msg allHouse(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
+                        @AuthenticationPrincipal Principal principal) {
+        String houseUsername=principal.getName();
+        System.out.println(houseUsername);
         PageHelper.startPage(pn, 10);
         List<House> allHouse = userService.allHouseByHouseUsername(houseUsername);
         PageInfo page = new PageInfo(allHouse, 5);
@@ -204,7 +207,7 @@ public class AdminController {
     @GetMapping("/admin/adminFindUserOrder")
     public Msg adminFindUserOrder(@RequestParam(defaultValue = "1", value = "pn") Integer pn,
                                   @AuthenticationPrincipal Principal principal) {
-        String houseUsername=principal.getName();
+        String houseUsername = principal.getName();
         PageHelper.startPage(pn, 10);
         List<House> houseList = userService.adminFindUserOrder(houseUsername);
         PageInfo pages = new PageInfo(houseList, 5);

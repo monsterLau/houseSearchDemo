@@ -43,17 +43,26 @@ public interface UserMapper {
     void updateUser(User user);
 
     //    查询所有房屋信息
-    @Select("select * from house where isOrder=0 Order by houseId")
+    @Select("select * from house where isOrder=0 and isSell=0 Order by houseId")
     List<House> allHouse();
 
     //    查询所有房屋信息
     @Select("select * from house where houseUsername=#{houseUsername} Order by houseId")
     List<House> allHouseByHouseUsername(@Param("houseUsername") String houseUsername);
 
+    //查询是否已租房屋信息
+    @Select("select * from house where isSell=#{isSell} and houseUsername=#{houseUsername}")
+    List<House> findHouseIsSell(@Param("isSell")Integer isSell,@Param("houseUsername") String houseUsername);
+
+
+    //设置房屋是否放租
+    @Update("update house set isSell=#{isSell} where houseId=#{houseId}")
+    void isSell(@Param("isSell") Integer isSell, @Param("houseId") Integer houseId);
+
+
     //    价格从高到低排列房屋信息
     @Select("SELECT * FROM HOUSE ORDER BY price")
     List<House> allHouseByPriceFromHighToLow();
-
 
     //    价格从高到低排列房屋信息
     @Select("SELECT * FROM HOUSE ORDER BY price DESC")
@@ -130,6 +139,5 @@ public interface UserMapper {
     int isSameOrder(@Param("username") String username, @Param("houseId") Integer houseId);
 
 
-    @Update("update house set isSell=#{isSell} where houseId=#{houseId}")
-    void isSell(@Param("isSell") Integer isSell, @Param("houseId") Integer houseId);
+
 }

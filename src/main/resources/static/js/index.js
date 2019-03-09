@@ -182,9 +182,6 @@ function paixu(pn,url) {
         type: "Get",
         data: "pn=" + pn,
         async: false,
-        // beforeSend: function (xhr) {
-        //     xhr.setRequestHeader(header, token);
-        // },
         success: function (result) {
             $("#trline").empty();
             $("#page").empty();

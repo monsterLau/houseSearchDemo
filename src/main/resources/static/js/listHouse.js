@@ -1,47 +1,10 @@
 var houseId = $("#button").val();
 var username = $(".username")[0].innerHTML;
 
-// $.ajax({
-//     url: "/allHouseByHouseUsername",
-//     type: "GET",
-//     data: "pn=" + pn,
-//     async: false,
-//     // beforeSend: function (xhr) {
-//     //     xhr.setRequestHeader(header, token);
-//     // },
-//     success: function (result) {
-//         console.log(username)
-//         console.log(result.extend.success.list);
-//         var list = result.extend.success.list;
-//         // t=list[number]
-//         list.forEach(function (t, number) {
-//             $("#trline").append("<tr>\n" +
-//                 "<td>" + t.houseId + "</td>\n" +
-//                 "<td><img src=\"" + t.img + "\" style=\"width: 150px;height: 100px\"/></td>\n" +
-//                 "<td>" + t.tittle + "</td>\n" +
-//                 "<td>" + t.price + "</td>\n" +
-//                 "<td>" + t.room + "</td>\n" +
-//                 "<td>" + t.subway + "</td>\n" +
-//                 "<td>" + t.area + "</td>\n" +
-//                 // "<td>" + t.操作 + "</td>\n" +
-//                 " \n" +
-//                 "<td>\n" +
-//                 "<a href=\"/admin/updateHouse/" + t.houseId + "\" class=\"button button-glow button-rounded button-raised button-primary\"><span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"/>修改信息</a>\n" +
-//                 "<a onclick='delHouse (" + t.houseId + ")' class=\"button button-glow button-rounded button-caution \"> <span class=\"glyphicon glyphicon-star\"\n" +
-//                 "aria-hidden=\"true\"></span>下架房屋</a>\n" +
-//                 "\n" +
-//                 "</td>\n" +
-//                 "</tr>")
-//         })
-//
-//     },
-//     error: function (result) {
-//         alert("失败！");
-//     }
-// });
 $(function () {
     pn(1);
 })
+
 function pn(pn) {
     $.ajax({
         url: "/allHouseByHouseUsername",
@@ -81,14 +44,13 @@ function pn(pn) {
     });
 }
 
-
 function delHouse(id) {
 // console.log(id)
     var houseId = id;
     $.ajax({
         url: "/admin/deleteHouse/" + houseId,
         type: "POST",
-        data: { houseId: houseId},
+        data: {houseId: houseId},
         success: function () {
             // alert("success!");
             window.location.href = "/admin/listHouse";
@@ -146,4 +108,94 @@ function buildHousePage(result) {
 
     var navEle = $("<nav></nav>").append(ul);
     navEle.appendTo("#page");
+}
+
+$("#findHouseNoSell").click(function () {
+        isNoSell(1, "/admin/adminFindHouseNoSell");
+    }
+)
+
+$("#findHouseOnSell").click(function () {
+        isOnSell(1, "/admin/adminFindHouseOnSell");
+    }
+)
+
+function isNoSell(pn, url) {
+    $.ajax({
+        url: url,
+        type: "Get",
+        data: "pn=" + pn,
+        async: false,
+        success: function (result) {
+            $("#trline").empty();
+            $("#page").empty();
+            buildHousePage(result);
+            count = result.extend.success.page;
+            var list = result.extend.success.list;
+            // t=list[number]
+            list.forEach(function (t, number) {
+                var houseId = t.houseId;
+                // alert(houseId);
+                $("#trline").append(
+                    "<tr>\n" +
+                    "<td>" + t.houseId + "</td>\n" +
+                    " <td>\n" +
+                    "<div class=\"col-xs-6 col-md-3\">\n" +
+                    " <img src=\"" + t.img + "\" style=\"width: 180px;height: 110px\"/>\n" +
+                    " </div>\n" +
+                    " </td>" +
+                    "<td>" + t.tittle + "</td>\n" +
+                    "<td>" + t.price + "</td>\n" +
+                    "<td>" + t.room + "</td>\n" +
+                    "<td>" + t.subway + "</td>\n" +
+                    "<td>" + t.area + "</td>\n" +
+                    "                    <td>\n" +
+                    "                            <a href=\"/admin/adminSetHouseOnSell/" + t.houseId + " \" class=\"button  button-glow button-rounded button-raised button-primary\"><span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"/>设为已租</a>\n"
+                )
+            });
+        },
+        error: function (result) {
+            alert("失败！");
+        }
+    })
+}
+
+function isOnSell(pn, url) {
+    $.ajax({
+        url: url,
+        type: "Get",
+        data: "pn=" + pn,
+        async: false,
+        success: function (result) {
+            $("#trline").empty();
+            $("#page").empty();
+            buildHousePage(result);
+            count = result.extend.success.page;
+            var list = result.extend.success.list;
+            // t=list[number]
+            list.forEach(function (t, number) {
+                var houseId = t.houseId;
+                // alert(houseId);
+                $("#trline").append(
+                    "<tr>\n" +
+                    "<td>" + t.houseId + "</td>\n" +
+                    " <td>\n" +
+                    "<div class=\"col-xs-6 col-md-3\">\n" +
+                    " <img src=\"" + t.img + "\" style=\"width: 180px;height: 110px\"/>\n" +
+                    " </div>\n" +
+                    " </td>" +
+                    "<td>" + t.tittle + "</td>\n" +
+                    "<td>" + t.price + "</td>\n" +
+                    "<td>" + t.room + "</td>\n" +
+                    "<td>" + t.subway + "</td>\n" +
+                    "<td>" + t.area + "</td>\n" +
+                    "                    <td>\n" +
+                    "                            <a href=\"/admin/adminSetHouseNoSell/" + t.houseId + " \" class=\"button  button-glow button-rounded button-raised button-primary\"><span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"/>设为未租</a>\n"
+                )
+            });
+        },
+        error: function (result) {
+            alert("失败！");
+        }
+    })
 }

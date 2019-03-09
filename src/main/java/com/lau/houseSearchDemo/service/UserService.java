@@ -89,4 +89,9 @@ public interface UserService {
 
 
     void isSell(Integer isSell,Integer houseId);
+
+    List<House> findHouseIsSell(Integer isSell,String houseUsername);
+
+
+
 }

@@ -17,6 +17,7 @@ public class House {
     private String houseUsername;
 
     private int isOrder;
+    private int isSell;
 
     private List<User> users;
 
@@ -143,10 +144,18 @@ public class House {
         this.houseUsername = houseUsername;
     }
 
+    public int getIsSell() {
+        return isSell;
+    }
+
+    public void setIsSell(int isSell) {
+        this.isSell = isSell;
+    }
+
     public House() {
     }
 
-    public House(Integer houseId, int price, int room, int area, int kitchen, int bathroom, String subway, String tittle, String housePhone, String name, String houseUsername, int isOrder, List<User> users, String img, Integer userId) {
+    public House(Integer houseId, int price, int room, int area, int kitchen, int bathroom, String subway, String tittle, String housePhone, String name, String houseUsername, int isOrder, int isSell, List<User> users, String img, Integer userId) {
         this.houseId = houseId;
         this.price = price;
         this.room = room;
@@ -159,6 +168,7 @@ public class House {
         this.name = name;
         this.houseUsername = houseUsername;
         this.isOrder = isOrder;
+        this.isSell = isSell;
         this.users = users;
         this.img = img;
         this.userId = userId;
@@ -179,6 +189,7 @@ public class House {
                 ", name='" + name + '\'' +
                 ", houseUsername='" + houseUsername + '\'' +
                 ", isOrder=" + isOrder +
+                ", isSell=" + isSell +
                 ", users=" + users +
                 ", img='" + img + '\'' +
                 ", userId=" + userId +

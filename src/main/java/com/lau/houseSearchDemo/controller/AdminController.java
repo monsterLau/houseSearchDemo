@@ -229,4 +229,60 @@ public class AdminController {
         userService.updateIsOrder(0, houseId);
         return Msg.success();
     }
+
+    /**
+     * 列出已出租的房屋信息
+     *
+     * @param pn
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("/admin/adminFindHouseOnSell")
+    public Msg isOnSell(@RequestParam(defaultValue = "1", value = "pn") Integer pn,
+                                  @AuthenticationPrincipal Principal principal) {
+        String houseUsername = principal.getName();
+        PageHelper.startPage(pn, 10);
+        List<House> houseList = userService.findHouseIsSell(1,houseUsername);
+        PageInfo pages = new PageInfo(houseList, 5);
+        return Msg.success().add("success", pages);
+    }
+
+    /**
+     * 列出未出租的房屋信息
+     *
+     * @param pn
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("/admin/adminFindHouseNoSell")
+    public Msg isNoSell(@RequestParam(defaultValue = "1", value = "pn") Integer pn,
+                      @AuthenticationPrincipal Principal principal) {
+        String houseUsername = principal.getName();
+        PageHelper.startPage(pn, 10);
+        List<House> houseList = userService.findHouseIsSell(0,houseUsername);
+        PageInfo pages = new PageInfo(houseList, 5);
+        return Msg.success().add("success", pages);
+    }
+
+    /**
+     * 把房屋设为已出租
+     * @param houseId
+     * @return
+     */
+    @GetMapping("/admin/adminSetHouseOnSell/{houseId}")
+    public String setHouseOnSell(@PathVariable("houseId")Integer houseId){
+        userService.isSell(1,houseId);
+        return "redirect:/admin/listHouse";
+    }
+
+    /**
+     * 把房屋设为未出租
+     * @param houseId
+     * @return
+     */
+    @GetMapping("/admin/adminSetHouseNoSell/{houseId}")
+    public String setHouseNoSell(@PathVariable("houseId")Integer houseId){
+        userService.isSell(0,houseId);
+        return "redirect:/admin/listHouse";
+    }
 }

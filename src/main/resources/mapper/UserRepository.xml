@@ -31,6 +31,7 @@
         <result property="tittle" column="tittle"/>
         <result property="img" column="img"/>
         <result property="isOrder" column="isOrder"/>
+        <result property="isSell" column="isSell"/>
         <result property="housePhone" column="housePhone"/>
         <result property="houseUsername" column="houseUsername"/>
         <result property="name" column="name"/>
@@ -63,6 +64,7 @@
         <result property="tittle" column="tittle"/>
         <result property="img" column="img"/>
         <result property="isOrder" column="isOrder"/>
+        <result property="isSell" column="isSell"/>
         <result property="housePhone" column="housePhone"/>
         <result property="houseUsername" column="houseUsername"/>
         <result property="name" column="name"/>

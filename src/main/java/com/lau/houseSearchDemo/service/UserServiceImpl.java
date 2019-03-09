@@ -124,14 +124,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateIsOrder(Integer i,Integer houseId) {
-        userMapper.updateIsOrder(i,houseId);
+    public void updateIsOrder(Integer i, Integer houseId) {
+        userMapper.updateIsOrder(i, houseId);
     }
 
     @Override
     public void isSell(Integer isSell, Integer houseId) {
         userMapper.isSell(isSell, houseId);
     }
+
+    @Override
+    public List<House> findHouseIsSell(Integer isSell, String houseUsername) {
+        return userMapper.findHouseIsSell(isSell, houseUsername);
+    }
+
 
     @Override
     public User findUserByuserName(String username) {

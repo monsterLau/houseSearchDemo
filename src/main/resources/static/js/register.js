@@ -41,8 +41,6 @@ $("#user_register_btn").click(function () {
     var phone=$("#phone").val();
     var email=$("#email").val();
     var realName=$("#realName").val();
-    var header = $("meta[name='_csrf_header']").attr("content");
-    var token = $("meta[name='_csrf']").attr("content");
 
     //判断用户名密码是否为空
     if (username.size = 0 || username == "" || username.replace(/(^s*)|(s*$)/g, "").length == 0) {
@@ -60,9 +58,7 @@ $("#user_register_btn").click(function () {
         type: "post",
         data: {"username": username, "password": password,"phone":phone,"email":email,"realName":realName},
         async: false,
-        // beforeSend: function (xhr) {
-        //     xhr.setRequestHeader(header, token);
-        // },
+
         success: function (result) {
             if (result.extend.sameName == "1") {
                 alert("用户名重复！");
